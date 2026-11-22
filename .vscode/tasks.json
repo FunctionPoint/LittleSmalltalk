@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "lst: build unit test image",
+            "type": "process",
+            "command": "${workspaceFolder}/build/Debug/lst.exe",
+            "args": [ "-o", "bin/test.img", "Smalltalk/System", "Smalltalk/Test" ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+        {
+            "label": "lst: build shell image",
+            "type": "process",
+            "command": "${workspaceFolder}/build/Debug/lst.exe",
+            "args": [ "-o", "bin/lst.img", "Smalltalk/System" ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        }
+    ]
+}

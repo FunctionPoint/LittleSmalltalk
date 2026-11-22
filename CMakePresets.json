@@ -1,0 +1,35 @@
+{
+	"version": 3,
+	"configurePresets": [
+		{
+			"name": "msvc",
+			"displayName": "Visual Studio 2026 x64",
+			"generator": "Visual Studio 18 2026",
+			"architecture": "x64",
+			"binaryDir": "${sourceDir}/build",
+			"condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows" }
+		},
+		{
+			"name": "linux",
+			"displayName": "Linux (Ninja Multi-Config)",
+			"generator": "Ninja Multi-Config",
+			"binaryDir": "${sourceDir}/build",
+			"condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Linux" }
+		},
+		{
+			"name": "macos",
+			"displayName": "macOS (Ninja Multi-Config)",
+			"generator": "Ninja Multi-Config",
+			"binaryDir": "${sourceDir}/build",
+			"condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Darwin" }
+		}
+	],
+	"buildPresets": [
+		{ "name": "debug",         "displayName": "Debug",   "configurePreset": "msvc",  "configuration": "Debug" },
+		{ "name": "release",       "displayName": "Release", "configurePreset": "msvc",  "configuration": "Release" },
+		{ "name": "linux-debug",   "displayName": "Debug",   "configurePreset": "linux", "configuration": "Debug" },
+		{ "name": "linux-release", "displayName": "Release", "configurePreset": "linux", "configuration": "Release" },
+		{ "name": "macos-debug",   "displayName": "Debug",   "configurePreset": "macos", "configuration": "Debug" },
+		{ "name": "macos-release", "displayName": "Release", "configurePreset": "macos", "configuration": "Release" }
+	]
+}

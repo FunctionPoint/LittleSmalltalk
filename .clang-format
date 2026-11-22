@@ -1,0 +1,24 @@
+# For options check:
+# https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+
+UseTab: Always
+IndentWidth: 4
+TabWidth: 4
+# public:/private: at the class's own indentation, so every indent is a whole tab
+AccessModifierOffset: -4
+# char* p: the * belongs to the type
+PointerAlignment: Left
+ReferenceAlignment: Pointer
+DerivePointerAlignment: false
+SpaceBeforeParens: Never
+SpacesInParentheses: true
+SpacesInSquareBrackets: true
+BreakBeforeBraces: Custom
+BraceWrapping:
+    AfterClass: true
+    AfterFunction: true
+SpaceAfterCStyleCast: true
+AllowShortFunctionsOnASingleLine: false
+ColumnLimit: 0
+# no braces around a single-statement body of if/else/for/while
+RemoveBracesLLVM: true

@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "lst: build image and run unit tests (Windows)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "preLaunchTask": "lst: build unit test image",
+            "program": "${workspaceFolder}/build/Debug/lst.exe",
+            "args": [ "bin/test.img" ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "lst: build image and run shell (Windows)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "preLaunchTask": "lst: build shell image",
+            "program": "${workspaceFolder}/build/Debug/lst.exe",
+            "args": [ "bin/lst.img" ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        }
+    ]
+}
