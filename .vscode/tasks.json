@@ -5,6 +5,7 @@
             "label": "lst: build unit test image",
             "type": "process",
             "command": "${workspaceFolder}/build/Debug/lst.exe",
+            "linux": { "command": "${workspaceFolder}/build/Debug/lst" },
             "args": [ "-o", "bin/test.img", "Smalltalk/System", "Smalltalk/Test" ],
             "options": { "cwd": "${workspaceFolder}" },
             "problemMatcher": []
@@ -13,6 +14,7 @@
             "label": "lst: build shell image",
             "type": "process",
             "command": "${workspaceFolder}/build/Debug/lst.exe",
+            "linux": { "command": "${workspaceFolder}/build/Debug/lst" },
             "args": [ "-o", "bin/lst.img", "Smalltalk/System" ],
             "options": { "cwd": "${workspaceFolder}" },
             "problemMatcher": []

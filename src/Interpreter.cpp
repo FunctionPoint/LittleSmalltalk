@@ -762,19 +762,17 @@ int Interpreter::smallIntAdd()
 	int high, low;
 	if( !popTwoSmallInts( high, low ) )
 		return primitiveFailed;
-	int result = high + low;
-	if( ( ( high > 0 ) && ( low > 0 ) && ( result < high ) ) ||
-		( ( high < 0 ) && ( low < 0 ) && ( result > high ) ) ) {
-		/* overflow... do it with 64 bits */
-		returnedValue = primitives.newLInteger(
-			(int64_t) high + (int64_t) low );
-	} else {
-		if( !SmallInt::fits( result ) )
-			returnedValue = primitives.newLInteger( result );
-		else
-			returnedValue = SmallInt::make( result );
-	}
+	/* in 64 bits: it cannot overflow (signed overflow is undefined behaviour) */
+	returnedValue = smallIntResult( (int64_t) high + low );
 	return primitiveSucceeded;
+}
+
+/* the result of a SmallInt operation: a SmallInt if it fits, else a 64-bit Integer */
+Object* Interpreter::smallIntResult( int64_t result )
+{
+	if( SmallInt::fits( result ) )
+		return SmallInt::make( result );
+	return primitives.newLInteger( result );
 }
 
 /*
@@ -855,17 +853,8 @@ int Interpreter::smallIntMultiply()
 	int high, low;
 	if( !popTwoSmallInts( high, low ) )
 		return primitiveFailed;
-	int result = high * low;
-	if( ( low == 0 ) || ( result / low == high ) ) {
-		if( !SmallInt::fits( result ) )
-			returnedValue = primitives.newLInteger( result );
-		else
-			returnedValue = SmallInt::make( result );
-	} else {
-		/* overflow... do it with 64 bits */
-		returnedValue = primitives.newLInteger(
-			(int64_t) high * (int64_t) low );
-	}
+	/* in 64 bits: two SmallInts (31 bits) multiply to at most 62 bits */
+	returnedValue = smallIntResult( (int64_t) high * low );
 	return primitiveSucceeded;
 }
 
@@ -875,14 +864,7 @@ int Interpreter::smallIntSubtract()
 	int high, low;
 	if( !popTwoSmallInts( high, low ) )
 		return primitiveFailed;
-	int result = high - low;
-	if( ( low > 0 ) && ( high < 0 ) && ( result > high ) )
-		returnedValue = primitives.newLInteger(
-			(int64_t) high - (int64_t) low );
-	else if( !SmallInt::fits( result ) )
-		returnedValue = primitives.newLInteger( result );
-	else
-		returnedValue = SmallInt::make( result );
+	returnedValue = smallIntResult( (int64_t) high - low );
 	return primitiveSucceeded;
 }
 

@@ -37,7 +37,7 @@ inline int64_t lstTimeUsec()
 {
 	timeval now;
 
-	gettimeofday( &now, NULL );
+	gettimeofday( &now, nullptr );
 
 	return ( (int64_t) 1000000 * now.tv_sec ) + now.tv_usec;
 }

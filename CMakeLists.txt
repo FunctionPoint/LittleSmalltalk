@@ -66,6 +66,7 @@ add_executable(lst ${VM_SOURCES})
 # after every build, copy the executable to bin/ (next to the image bin/lst.img), where the
 # scripts of the examples run it: the configuration built last (Debug or Release) is the one there
 add_custom_command(TARGET lst POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/bin
 	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:lst> ${PROJECT_SOURCE_DIR}/bin/
 	COMMENT "Copying lst to bin/." VERBATIM
 )

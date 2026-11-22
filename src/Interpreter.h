@@ -91,6 +91,7 @@ private:
 	int invokeBlock( int argumentCount );
 	int readCharacter();
 	int smallIntAdd();
+	Object* smallIntResult( int64_t result );
 	bool popTwoSmallInts( int& high, int& low );
 	int smallIntQuotient();
 	int smallIntRemainder();

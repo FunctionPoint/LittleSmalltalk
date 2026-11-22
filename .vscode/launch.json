@@ -20,6 +20,36 @@
             "args": [ "bin/lst.img" ],
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "lst: build image and run unit tests (Linux)",
+            "type": "cppdbg",
+            "request": "launch",
+            "preLaunchTask": "lst: build unit test image",
+            "program": "${workspaceFolder}/build/Debug/lst",
+            "args": [ "bin/test.img" ],
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "setupCommands": [
+                { "description": "Pretty printing", "text": "-enable-pretty-printing", "ignoreFailures": true }
+            ]
+        },
+        {
+            "name": "lst: build image and run shell (Linux)",
+            "type": "cppdbg",
+            "request": "launch",
+            "preLaunchTask": "lst: build shell image",
+            "program": "${workspaceFolder}/build/Debug/lst",
+            "args": [ "bin/lst.img" ],
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "setupCommands": [
+                { "description": "Pretty printing", "text": "-enable-pretty-printing", "ignoreFailures": true }
+            ]
         }
     ]
 }
