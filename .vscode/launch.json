@@ -50,6 +50,28 @@
             "setupCommands": [
                 { "description": "Pretty printing", "text": "-enable-pretty-printing", "ignoreFailures": true }
             ]
+        },
+        {
+            "name": "lst: build image and run unit tests (macOS)",
+            "type": "cppdbg",
+            "request": "launch",
+            "preLaunchTask": "lst: build unit test image",
+            "program": "${workspaceFolder}/build/Debug/lst",
+            "args": [ "bin/test.img" ],
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "MIMode": "lldb"
+        },
+        {
+            "name": "lst: build image and run shell (macOS)",
+            "type": "cppdbg",
+            "request": "launch",
+            "preLaunchTask": "lst: build shell image",
+            "program": "${workspaceFolder}/build/Debug/lst",
+            "args": [ "bin/lst.img" ],
+            "cwd": "${workspaceFolder}",
+            "externalConsole": true,
+            "MIMode": "lldb"
         }
     ]
 }

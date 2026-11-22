@@ -2,10 +2,23 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "lst: build debug",
+            "type": "process",
+            "command": "C:/Program Files/Microsoft Visual Studio/18/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cmake.exe",
+            "args": [ "--build", "--preset", "debug" ],
+            "linux": { "command": "cmake", "args": [ "--build", "--preset", "linux-debug" ] },
+            "osx": { "command": "cmake", "args": [ "--build", "--preset", "macos-debug" ] },
+            "options": { "cwd": "${workspaceFolder}" },
+            "group": "build",
+            "problemMatcher": [ "$msCompile", "$gcc" ]
+        },
+        {
             "label": "lst: build unit test image",
             "type": "process",
+            "dependsOn": "lst: build debug",
             "command": "${workspaceFolder}/build/Debug/lst.exe",
             "linux": { "command": "${workspaceFolder}/build/Debug/lst" },
+            "osx": { "command": "${workspaceFolder}/build/Debug/lst" },
             "args": [ "-o", "bin/test.img", "Smalltalk/System", "Smalltalk/Test" ],
             "options": { "cwd": "${workspaceFolder}" },
             "problemMatcher": []
@@ -13,8 +26,10 @@
         {
             "label": "lst: build shell image",
             "type": "process",
+            "dependsOn": "lst: build debug",
             "command": "${workspaceFolder}/build/Debug/lst.exe",
             "linux": { "command": "${workspaceFolder}/build/Debug/lst" },
+            "osx": { "command": "${workspaceFolder}/build/Debug/lst" },
             "args": [ "-o", "bin/lst.img", "Smalltalk/System" ],
             "options": { "cwd": "${workspaceFolder}" },
             "problemMatcher": []
